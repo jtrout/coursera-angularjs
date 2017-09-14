@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-md-3" ng-repeat="item in list.menuItems">
+    <div class="col-sm-3" ng-repeat="item in list.menuItems">
         <div class="card mb-3">
             <div class="card-header">
                 <button class="float-right fa fa-times" ng-click="list.onRemove({index: $index});"></button>
@@ -13,5 +13,10 @@
                 <div class="card-text float-right" ng-if="item.price_large"><small>Large: {{item.price_large | currency}}</small></div>
             </div>
         </div>
+    </div>
+</div>
+<div class="row" ng-if="list.menuItems === null || list.menuItems.length <= 0">
+    <div class="col-sm-12">
+        <div class="alert alert-warning" role="alert">Nothing Found!</div>
     </div>
 </div>

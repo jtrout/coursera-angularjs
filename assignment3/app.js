@@ -32,16 +32,20 @@
         var narrow = this;
 
         narrow.findMenuItems = function (searchTerm) {
-            console.log(searchTerm);
-            var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
+            if (searchTerm && searchTerm !== null) {
+                var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
 
-            promise.then(function (foundItems) {
-                narrow.found = foundItems;
-                console.log('Returned items from search service:', foundItems);
-            })
-                .catch(function (error) {
-                    console.log("Something went terribly wrong.");
-                });
+                promise.then(function (foundItems) {
+                    narrow.found = foundItems;
+                    console.log('Returned items from search service:', foundItems);
+                })
+                    .catch(function (error) {
+                        console.log("Something went terribly wrong.");
+                    });
+            } else {
+                // initialize found if not already, and ensure it's empty so we can show the 'nothing found' message
+                narrow.found = [];
+            }
         };
 
         narrow.removeItem = function (itemIndex) {
